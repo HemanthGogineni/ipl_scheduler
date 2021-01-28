@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Entity
 @Table(name="teams")
@@ -24,4 +23,7 @@ public class Team {
 
     @Column(name = "team_name")
     private String teamName;
+
+    @Column
+    private String homeLocation;
 }
