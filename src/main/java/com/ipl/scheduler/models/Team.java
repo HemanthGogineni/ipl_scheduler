@@ -1,5 +1,6 @@
 package com.ipl.scheduler.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name="teams")
@@ -17,13 +20,18 @@ import javax.persistence.Table;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id", unique = true)
     private long id;
 
     @Column(name = "team_name")
     private String teamName;
 
-    @Column
+    @Column(name = "home_location")
     private String homeLocation;
+
+
+    @ManyToMany(targetEntity = IPLMatch.class)
+    @JsonIgnore
+    private Set<IPLMatch> matches;
 }
