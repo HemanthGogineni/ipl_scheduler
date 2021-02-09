@@ -6,4 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface TeamDAO extends JpaRepository<Team, Long> {
+
+    public Team findByTeamName(String teamName);
 }
